@@ -154,6 +154,9 @@ namespace w2v {
                             output_vec[j] += error * input_vec[j];
                         }
                     }
+                    for(int i = 0; i < n_dim; ++ i) {
+                        input_vec[i] += neu1e[i];
+                    }
                     // use cblas
                     // TODO:
                 }
