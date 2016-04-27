@@ -333,6 +333,9 @@ namespace w2v {
             float lr;
             int n_iter;
             std::mt19937 rng;
+
+            Word2Vec(const Word2Vec &other) {}
+            Word2Vec& operator=(const Word2Vec &other) {}
     };
 }
 
