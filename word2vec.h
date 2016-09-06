@@ -62,6 +62,7 @@ namespace w2v {
             fclose(fp);
         }
     };
+    const static float MIN_LR = 0.0001;
     class Word2Vec {
         public:
             Word2Vec() {}
@@ -98,7 +99,7 @@ namespace w2v {
 
                             progress ++;
                             if(progress % width == 0) {
-                                if (lr > 0.0001)    lr *= 0.999;
+                                if (lr > MIN_LR)    lr *= 0.999;
                                 std::cout << "[PROGRESS";
                                 std::cout << "] ##### " << (float)(progress) / sentences.size() * 100.0 << " % ### lr: " << lr << "\r" << std::flush;
                             }
@@ -286,7 +287,7 @@ namespace w2v {
                 std::uniform_real_distribution<float> ud(-0.5, 0.5);
                 for(int i = 0; i < n_dim; ++ i) {
                     for(size_t j = 0; j < vocab_vec.size(); ++ j) {
-                        syn0[j][i] = ud(rng);
+                        syn0[j][i] = ud(rng) / n_dim;
                     }
                 }
             }

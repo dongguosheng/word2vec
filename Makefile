@@ -13,13 +13,13 @@ LIBS	=
 # Object Files
 OBJS	=	main.o 
 # Name of Executable
-TARGET	=	$(patsubst %.cpp, run_%, $(wildcard *.cpp))
+TARGET	=	w2v_train
 # ---------------
 
 all:	$(TARGET)
 
-run_%: %.cpp Makefile
+w2v_train: main.cpp Makefile
 	$(CC) $(CXXFLAGS) $(INCLUDES) $< -o $@ -L. $(LDFLAGS)
 
 clean:
-	-rm -f *.o core.* run_*
+	-rm -f *.o core.* w2v_train
