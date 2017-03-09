@@ -1,5 +1,5 @@
-#ifndef QUERY_EMBEDDING_H
-#define QUERY_EMBEDDING_H
+#ifndef QUERY2VEC_H
+#define QUERY2VEC_H
 
 #include <unordered_map>
 #include <string>
@@ -676,4 +676,4 @@ class Query2Vec {
         Query2Vec& operator=(const Query2Vec &other);
 };
 
-#endif /*QUERY_EMBEDDING_H*/
+#endif /*QUERY2VEC_H*/
