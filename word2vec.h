@@ -10,8 +10,10 @@
 #include <cstring>
 #include <cmath>
 #include <cstdio>
+#include "mat.h"
 
 namespace w2v {
+    using mat::Mat;
     struct Vocab {
         std::string word;
         int cnt;
@@ -19,47 +21,6 @@ namespace w2v {
         Vocab(std::string word, int cnt) : word(word), cnt(cnt), index(0) {}
         bool operator<(const Vocab& rhs) const {
             return rhs.cnt < cnt;
-        }
-    };
-    struct Mat {
-        size_t n_row;
-        size_t n_col;
-        float *dptr;
-        Mat() {}
-        Mat(float *dptr, size_t n_row, size_t n_col) : n_row(n_row), n_col(n_col), dptr(dptr) {}
-        Mat deepcopy(const Mat &mat) {
-            Mat rs;
-            memcpy(rs.dptr, mat.dptr, sizeof(float) * mat.n_row * mat.n_col);
-            rs.n_row = mat.n_row;
-            rs.n_col = mat.n_col;
-            return rs;
-        }
-        Mat& operator=(const Mat &mat) {
-            memcpy(dptr, mat.dptr, sizeof(float) * mat.n_row * mat.n_col);
-            n_row = mat.n_row;
-            n_col = mat.n_col;
-            return *this;
-        }
-        float* operator[](size_t i) {
-            return dptr + i*n_col;
-        }
-        inline void Set(float *_dptr, size_t _n_row, size_t _n_col) {
-            dptr = _dptr;
-            n_row = _n_row;
-            n_col = _n_col;
-        }
-        inline void Reset() {
-            memset(dptr, 0, sizeof(float) * n_row * n_col);
-        }
-        inline float* GetRow(size_t i) const {
-            return dptr + i;
-        }
-        inline void Save(const char *filename) {
-            FILE *fp = fopen(filename, "wb");
-            if(fp) {
-                fwrite(dptr, sizeof(float), n_row * n_col, fp);
-            }
-            fclose(fp);
         }
     };
     const static float MIN_LR = 0.0001;
