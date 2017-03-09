@@ -3,7 +3,7 @@
 # Compiler Name
 CC		=	g++
 # Compile Flags
-CXXFLAGS=	-g -Wall -std=c++11 -fopenmp
+CXXFLAGS=	-O2 -Wall -std=c++11 -fopenmp
 # Linker Flags
 LDFLAGS	=
 # Include 
@@ -11,15 +11,15 @@ INCLUDES=
 # Libraries
 LIBS	=
 # Object Files
-OBJS	=	main.o 
+OBJS	=	main.o
 # Name of Executable
-TARGET	=	w2v_train
+TARGET	=	run_main
 # ---------------
 
 all:	$(TARGET)
 
-w2v_train: main.cpp Makefile
-	$(CC) $(CXXFLAGS) $(INCLUDES) $< -o $@ -L. $(LDFLAGS)
+run_main: main.cpp Makefile query2vec.h layers.h mat.h 
+	$(CC) MurmurHash3.cpp $(CXXFLAGS) $(INCLUDES) $< -o $@ -L. $(LDFLAGS)
 
 clean:
-	-rm -f *.o core.* w2v_train
+	-rm -f *.o core.* run_*

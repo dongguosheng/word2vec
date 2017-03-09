@@ -1,2 +1,2 @@
-# word2vec
-word2vec reimplementation
+# query2vec
+query2vec with kinds of implicit feedback.
